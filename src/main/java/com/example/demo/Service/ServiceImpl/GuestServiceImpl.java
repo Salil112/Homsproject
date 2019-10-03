@@ -59,10 +59,10 @@ public class GuestServiceImpl implements GuestService{
 
 	}
 
-	@Override
-	public List<Guest> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	 @Override
+	    public List<Guest> getAll(){
+
+	        return guestrepository.findAll(new Sort(Sort.Direction.ASC,"firstName"));
+	    }
 
 }

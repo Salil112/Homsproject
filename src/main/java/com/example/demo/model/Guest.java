@@ -1,11 +1,17 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,7 +21,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 @XmlRootElement
 @Entity
 @Table(name = "Guests")
-public class Guest {
+public class Guest  {
 	private Long id;
 	private String first_name;
 	private String last_name;
@@ -53,6 +59,9 @@ public class Guest {
 	    public String getGender() {
 	        return gender;
 	    }
+	   @OneToOne(fetch = FetchType.LAZY, optional = false)
+	    @JoinColumn(name = "room_id", nullable = false)
+	    private Room room;
 	   public void setId(Long id) {
 	        this.id=id;
 	    }
